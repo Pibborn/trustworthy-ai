@@ -713,7 +713,9 @@ separation can also codify merit in some sense
 ![bg opacity:20% blur:8px](img/dalle_lady.png)
 
 
-## Outline
+## Sufficiency
+
+
 
 
 

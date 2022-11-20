@@ -28,10 +28,6 @@ paginate: true
 
 ---
 
----
-
-
-
 ## Independence
 
 
@@ -136,7 +132,7 @@ Random variables $(\hat{Y}, A, Y)$ satisfy **separation** if $\hat{Y} \bot A \mi
 In the binary classification and binary $A$ case:
 
 $$
-\mathbb{P}(\hat{Y} = 1 \mid Y = 1, A = a) = \mathbb{P}(\hat{Y} = 1 \mid Y = 1, A = b) \\
+\mathbb{P}(\hat{Y} = 1 \mid Y = 1, A = a) = \mathbb{P}(\hat{Y} = 1 \mid Y = 1, A = b)
 \mathbb{P}(\hat{Y} = 1 \mid Y = 0, A = a) = \mathbb{P}(\hat{Y} = 1 \mid Y = 0, A = b)
 $$
 
@@ -332,6 +328,8 @@ There is no current consensus on which class of intervention one should apply de
 
 On the other hand, it is hard to say if it will be **impossible to discriminate** after employing these techniques.
 
+Furthermore, pre-processing entails **not having access to the decisions $\hat{Y}$**, which means they can be limited to indepdendence definitions.
+
 
 ---
 
@@ -356,6 +354,125 @@ Some **post-processing methods** are **optimal** in the sense that they achieve 
 
 <br>
 
-However, they sometimes **require to draw different thresholds for different groups**, which may be understood as explicitly inconsistent/positive discrimination.
+However, they often **require to draw different thresholds for different groups**, which means that the sensitive attribute needs to be available at test time.
 
 ---
+
+## Preprocessing methods
+
+Preprocessing methods may be further divided into two families:
+
+* **Data-level preprocessing**: modify $x$, $y$ or both. 
+<br>
+* **Representation-level preprocessing**: a new representation $\hat{x}$ of $x$ is found so that sensitive information $A$ is removed.
+
+
+---
+
+## Interventions Taxonomy (1)
+
+<center>
+
+![](img/interventions.png)
+
+</center>
+
+
+---
+
+## Interventions Taxonomy
+
+Today: **suppression**, **massaging** and **reweighting**, as developed by Kamiran and Calders in *Data preprocessing techniques for classification without discrimination*, 2012. 
+
+<br>
+
+
+
+
+---
+
+## Suppression
+
+**Core idea**: finding those features in $X$ which correlate the most with the sensitive information $A$. 
+
+Multiple measures of correlation between one feature $X_i$ and $S$ may be applicable here.
+
+---
+
+## Suppression
+
+**Pearson correlation coefficient**: $\rho_{X_i, A} = \frac{cov(X_i, A)}{\sigma_{X_i} \sigma_{A}} = \frac{\mathbb{E}[(X_i - \mu_{X_i})(A - \mu_A)]}{\sigma_{X_i} \sigma_A}$
+
+Also informally known as **linear correlation**. It is merely a normalization of the covariance between two random variables. 
+
+* Easy to compute
+* Possible to perform statistical testing for both zero and nonzero values
+* Only considers **linear** correlation - more complex relationships may be missed. 
+
+---
+
+## Suppression
+
+<br>
+
+<center>
+
+![w:800px](img/correlation.svg)
+
+</center>
+
+---
+
+## Suppression
+
+A more general alternative: the **mutual information** $I(X_i; A)$.
+
+Originally developed by Claude Shannon and given its name by Roberto Fano, is a more general measure of correlation between two random variables. Its attractiveness is due to the fact that it is 0 **if and only if** two random variables are independent. 
+
+It follows that one may also model independence as $I(\hat{Y}; A) = 0$ and separation as $I(\hat{Y}; A \mid Y) = 0$.
+
+
+---
+
+## Suppression
+
+If $X_i$ and $A$ are discrete: $I(X_i; A) = \sum_{x_i \in X_i} \sum_{a \in A} \mathbb{P}(x_i, a) \; log( \frac{P(x_i, a)}{P(x_i)P(a))})$
+
+<br>
+
+In the continuous case, one can just substitute the sums with integrals. 
+
+* General measure of correlation.
+* **Hard to compute**. Estimating the joint probability $\mathbb{P}(x_i, a)$ can be extremely challenging. It is possible to simplify the computation somewhat via Bayes' theorem.
+
+
+---
+
+## Massaging
+
+**Short summary**: changing the value of $y$ for some examples so to obtain independence or low values of the related metric.
+
+**Assumptions**: a binary classification setting, binary sensitive attribute $A$, one privileged group $A=a$ and one underprivileged group $A=b$.
+
+---
+
+## Massaging
+
+1. Train a ranker on the dataset $X, Y$ without taking into consideration $A$. A ranker is a function $r_{\theta}(x) \to [0, 1]$ which outputs the probability that $x$ is the most relevant (or most deserving) example. 
+2. Create the **promotion list** by selecting all samples in which $A=b \wedge Y=0$ and rank them **descending** (from highest to lowest) with regard to the scores outputted by $r_{\theta}(x)$. 
+3. Create the **demotion list** by selecting all samples in which $A=a \wedge Y=1$ and rank them **ascending** (from lowest to highest) with regard to the scores outputted by $r_{\theta}(x)$.
+4. Select $m$ individuals from both lists. Change their label values.
+
+---
+
+## Massaging
+
+* Quite an **intrusive** method, as it requires rewriting the data. 
+<br>
+* Different rankers $r_{\theta}$ will return different top-1 probabilities. This will in turn modify the **final result**.
+<br>
+* To be considered in the event that one is concerned about having a biased ground truth measurement process.
+
+---
+
+## Weighting

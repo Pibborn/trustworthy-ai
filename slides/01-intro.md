@@ -1,7 +1,7 @@
 ---
 marp: true
 theme: uncover-bb
-paginate: false 
+paginate: true
 ---
 
 <!-- _class: lead -->
@@ -35,7 +35,6 @@ Mattia Cerrato<br>📧 mcerrato@uni-mainz.de<br>🌐 https://pibborn.github.io
 
 <br>
 
-![bg opacity:10% blur:3px](img/dalle_crossing.png)
 
 **Post-Doc** at the Data Mining Group, JGU
 
@@ -54,7 +53,21 @@ Ph.D. in Computer Science from University of Torino, Italy
 
 ## Class Information
 
-![bg opacity:10% blur:3px](img/dalle_crossing.png)
+
+
+This is an **experimental** class - the combination of topics is almost novel and the treatment is novel. Please expect some messiness! 😅
+
+<br>
+
+I have three objectives for this class:
+* Prepare you for the socio-technical challenges of a data science job - or at least make you aware about them.
+* Get **us** out of our "hard sciences" comfort zone - some of the issues behind AI algorithms need to be understood with tools beyond performance metrics.
+* Foster discussion and a nuanced understanding about the societal impacts of AI.
+
+---
+
+## Class Information
+
 
 <br>
 
@@ -62,11 +75,11 @@ Ph.D. in Computer Science from University of Torino, Italy
 
 <br>
 
-**Tutorials**: Thursdays 2-4PM
+**Tutorials**: Thursdays 4-6PM, Room 04-224
 
 <br>
 
-**Final Exam**: oral examination - but open to discussion if someone is not confortable doing that in English
+**Final Exam**: oral examination - but open to discussion if someone is not confortable doing that in English. **Q+ students**: essay and discussion. 
 
 **Grading**: 70% final exam + 30% tutorials (coding, short essays)
 
@@ -80,7 +93,6 @@ Classes will be held **in presence** until it is possible/reasonable to do so.
 
 <br>
 
-![bg opacity:10% blur:3px](img/dalle_crossing.png)
 
 <br>
 
@@ -92,21 +104,10 @@ Assignments and important communication will be mostly be delivered via Teams.
 
 ---
 
-## Class Schedule
-
-![bg opacity:10% blur:3px](img/dalle_crossing.png)
-
-
-TODO
-
-
----
-
 ## Reference books
 
 <br>
 
-![bg opacity:10% blur:3px](img/dalle_crossing.png)
 
 
 Russell and Norvig. **AI: A modern Approach**. 4th Edition.
@@ -117,6 +118,10 @@ Barocas, Hardt and Narayanan. **Fairness and Machine Learning. Limitations and o
 <br>
 
 **Plus**: articles distributed in class / via Teams.
+
+<br>
+
+My suggestion for success: come to class and take notes :-)  
 
 
 ---
@@ -143,7 +148,6 @@ The study of how AI techniques, methodologies and applications may be made **rel
 
 ## What is Trustworthy AI
 
-![bg opacity:20% blur:5px](img/dalle_lady.png)
 
 
 An AI system may be understood as the sum of its parts:
@@ -157,7 +161,6 @@ An AI system may be understood as the sum of its parts:
 
 ## What is Trustworthy AI
 
-![bg opacity:20% blur:5px](img/dalle_lady.png)
 
 
 Simple example: the **thermostat** [Russell and Norvig, Chapter 1]
@@ -173,7 +176,6 @@ How do we know if this system is **trustworthy**, i.e. reliable and dependable?
 
 ## What is Trustworthy AI
 
-![bg opacity:20% blur:5px](img/dalle_lady.png)
 
 We should be able to agree that the thermostat is trustworthy when it makes **a limited amount of mistakes**, that is, it follows our instructions closely and timely. 
 
@@ -189,7 +191,6 @@ Possible measure of **success**: not getting a huge energy bill at the end of th
 
 <br>
 
-![bg opacity:20% blur:5px](img/dalle_lady.png)
 
 Complicated example: **selecting people for a finance job interview**
 
@@ -199,7 +200,6 @@ Complicated example: **selecting people for a finance job interview**
 
 ## What is Trustworthy AI
 
-![bg opacity:20% blur:5px](img/dalle_lady.png)
 
 Some ideas:
 
@@ -210,13 +210,12 @@ Some ideas:
 * Degree obtained in a very good/competitive school
 
 
-Many more are possible. Is it simple to **explicitly enumerate all the requirements**, and come up with a procedure to compute our decisions?
+Many more are possible. Is it simple to **explicitly enumerate all the requirements**, and come up with a procedure to compute a **yes/no** decision?
 
 ---
 
 ## Clinical vs. Actuarial Judgement
 
-![bg opacity:20% blur:5px](img/dalle_lady.png)
 
 <br>
 
@@ -231,7 +230,6 @@ Dawes, Faust and Meehl, 1989. *Science*. Emphasis mine.
 <br>
 <br>
 
-![bg opacity:20% blur:5px](img/dalle_lady.png)
 
 A "**clinical AI method**" relies on a set of pre-determined rules, given by a domain expert.
 
@@ -241,9 +239,37 @@ An "**actuarial/statistical AI method**" looks at **past data** to **predict fut
 
 ---
 
-## Acturial Judgement in AI 
 
-![bg opacity:20% blur:5px](img/dalle_lady.png)
+## Clinical vs. Actuarial Judgement
+
+One possible way to look at the history of AI is to divide it into two phases:
+
+* Logic/Knowledge-baseed approaches: gather knowledge, manipulate symbols in a logical sound way - **clinical judgement systems**. 1956 ~ 1990.
+* Data-based approaches: gather data, use statistics to find optimal decisions - **actuarial judgement systems**. 1980 ~ now
+
+This is **not** the full picture, of course. 
+
+
+---
+
+
+## Clinical Judgement in AI
+
+**Expert systems** have been an incredibly successful application of AI - if enough knowledge is gathered, one can build a chain of if-else rules which offer good performance for a given task. 
+
+Example applications:
+
+* Medical diagnosis - gather symptoms, suggest disease and treatment
+* Chip design - collect requirements, suggest design
+* Space shuttle mission control - Muratore et al., 1989
+
+
+
+
+---
+
+## Clinical vs. Acturial Judgement in AI 
+
 
 Another difficult example (for computers): **what can you see in this image**?
 
@@ -257,12 +283,11 @@ Another difficult example (for computers): **what can you see in this image**?
 
 ---
 
-## Actuarial Judgement in AI
+## Clinical vs. Actuarial Judgement in AI
 
 <br>
 <br>
 
-![bg opacity:20% blur:5px](img/dalle_lady.png)
 
 AI researchers found it **impossible** to solve this problem via clinical judgement, i.e. a full enumeration of what a "baby", "lego brick" is under all possible circumstances.
 
@@ -274,7 +299,6 @@ This may seem reasonable to us now, but it was relatively surprising after the f
 
 ## Actuarial Judgement in AI
 
-![bg opacity:20% blur:5px](img/dalle_lady.png)
 
 
 <center>
@@ -289,7 +313,6 @@ This may seem reasonable to us now, but it was relatively surprising after the f
 
 <br>
 
-![bg opacity:20% blur:5px](img/dalle_lady.png)
 
 > The primary goal of the project is to construct a system of programs which will divide a vidisector picture into regions such as likely objects, likely background areas and chaos. [...] The final goal is OBJECT IDENTIFICATION which will actually name objects by matching them with a vocabulary of known objects.
 
@@ -302,7 +325,6 @@ It would take us ~45 years to get acceptable results.
 
 ## Actuarial Judgement in AI
 
-![bg opacity:20% blur:5px](img/dalle_lady.png)
 
 <br>
 
@@ -318,7 +340,6 @@ What happened in the meantime?
 
 <br>
 
-![bg opacity:20% blur:5px](img/dalle_lady.png)
 
 Nowadays, machine learning models are hosted on your phone and may create galleries for you: family, friends, pets, trip to London, etc. This was enabled by the creation of **1M+ image databases** (e.g. ILSVRC). 
 
@@ -330,7 +351,6 @@ Of course, hard to imagine this happening without the Internet.
 
 ## Actuarial Judgement in AI
 
-![bg opacity:20% blur:5px](img/dalle_lady.png)
 
 
 <center>
@@ -345,9 +365,8 @@ From Goodfellow, Bengio and Courville. Deep Learning. MIT Press, 2016
 
 <br>
 
-![bg opacity:20% blur:5px](img/dalle_lady.png)
 
-Of course, the resurgence of **deep learning** techniques - i.e. neural networks - played no small part in this.
+Of course, the resurgence (2010s) of **deep learning** techniques - i.e. neural networks - played no small part in this.
 
 Compared to other **actuarial** methodologies which explicitly represent and manipulate probability distributions (Hidden Markov Models, Gaussian Mixture Models, Bayesian Networks...), they show a higher capacity to **scale to massive amounts of data**. 
 
@@ -512,7 +531,6 @@ Image generated by OpenAI dall-e.
 
 ## How does this happen?
 
-![bg opacity:20% blur:5px](img/dalle_black.png)
 
 
 **Are Emily and Greg More Employable than Lakisha and Jamal? A Field Experiment on Labor Market Discrimination.**  Bertrand and Mullainathan. 2003
@@ -525,7 +543,6 @@ Image generated by OpenAI dall-e.
 
 ## US only?
 
-![bg opacity:20% blur:5px](img/dalle_black.png)
 
 
 **Ethnic Discrimination in Germany’s Labour Market: A Field Experiment.** Kaas and Manger, 2010. 
@@ -541,7 +558,6 @@ Image generated by OpenAI dall-e.
 
 <br>
 
-![bg opacity:20% blur:5px](img/dalle_black.png)
 
 Dawes, Faust and Meehl, 1989.
 
@@ -557,7 +573,6 @@ Is it ever?
 
 ## How does this happen?
 
-![bg opacity:20% blur:5px](img/dalle_black.png)
 
 <br>
 <br>
@@ -574,7 +589,21 @@ This is especially true for deep neural networks
 ## How does this happen?
 
 
-![bg opacity:20% blur:5px](img/dalle_black.png)
+<br>
+<br>
+
+Actuarial AI is often **opaque**, meaning that it is difficult / impossible to understand **why** a certain AI system has made a particular decision
+
+While it is possible to **inspect** a model's parameters (its **algorithm**), connecting it to the actual decisions is another matter entirely
+
+This is especially true for deep neural networks
+
+
+---
+
+## How does this happen?
+
+
 
 <center>
 
@@ -591,7 +620,6 @@ From Bernstein et al. 2021, Nature Scientific Reports
 
 <br>
 
-![bg opacity:20% blur:5px](img/dalle_black.png)
 
 "**‘It Happened So Fast’: Inside a Fatal Tesla Autopilot Accident**" NY Times. 2019
 
@@ -608,7 +636,6 @@ From Bernstein et al. 2021, Nature Scientific Reports
 
 <br>
 
-![bg opacity:20% blur:5px](img/dalle_lady.png)
 
 The aim of this class is to prepare you for the **real-world requirements** of AI development, and, above all, **real-world deployment**
 
@@ -620,7 +647,6 @@ The same holds for AI systems -- how do we ensure that nothing goes wrong? Or, h
 
 ## Trustworthy AI
 
-![bg opacity:20% blur:5px](img/dalle_lady.png)
 
 While some of the possible situations are unique to certain application fields, here we focus on three (/four) dimensionalities:
 
@@ -633,7 +659,6 @@ While some of the possible situations are unique to certain application fields, 
 
 ## Trustworthy AI
 
-![bg opacity:20% blur:5px](img/dalle_lady.png)
 
 We will often borrow from **recent research** and **developments** on this topic, and discussion is always encouraged.
 
@@ -645,7 +670,18 @@ The common theme: once an AI system is deployed to act in society, many issues a
 
 ---
 
-![bg opacity:10% blur:5px](img/dalle_lady.png)
+
+## Next lecture - Data and Measurement
+
+* What is **data**? 
+* What is **raw data**?
+* What does it mean to **collect data**?
+* Is it possible to **remove the human judge** from the actuarial AI process?
+
+
+
+---
+
 
 
 <center>
@@ -656,16 +692,18 @@ The common theme: once an AI system is deployed to act in society, many issues a
 <br>
 
 Financed by CZS, 2022~2028
+topml.uni-mainz.de
 
 
 ---
 
-![bg opacity:10% blur:5px](img/dalle_lady.png)
 
 
 <center>
 
-![w:600px](img/tradeoffs_green.png)
+![w:520px](img/tradeoffs_green.png)
+<br>
+topml.uni-mainz.de
 
 
 ---

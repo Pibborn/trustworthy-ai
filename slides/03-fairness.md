@@ -1,8 +1,10 @@
 ---
 marp: true
 theme: uncover-bb
-paginate: false 
+paginate: true
 ---
+
+
 
 <!-- _class: lead -->
 
@@ -25,10 +27,17 @@ paginate: false
 
 </center>
 
+<!--
+
+Open points:
+* broad and narrow view of equal opportunity, chapter 4 of fair ml book
+* rawls and veil of ignorance: unclear how to discuss it. see https://www.jpe.ox.ac.uk/papers/indirect-discrimination-is-not-necessarily-unjust/
+
+
+
+
 
 ---
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
 
 
 ## Outline
@@ -49,8 +58,6 @@ paginate: false
 
 ---
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
 
 ## Outline
 
@@ -58,9 +65,8 @@ paginate: false
 * fairness by unawareness: procedural justice
 
 
----
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
+---
 
 
 ## Outline
@@ -71,6 +77,8 @@ paginate: false
 * fairness interventions - the data is what it is. the world is what it is. 
 * however, interventions are a "all is lost!" approach 
 * data level, model level, decision level
+
+-->
 
 ---
 
@@ -146,8 +154,6 @@ Reuters: Amazon scraps secret AI recruiting tool that showed bias against women
 
 ## COMPAS
 
-![bg opacity:20% blur:7px](img/dalle_lady.png)
-
 
 <center>
 
@@ -158,8 +164,6 @@ Reuters: Amazon scraps secret AI recruiting tool that showed bias against women
 ---
 
 ## COMPAS
-
-![bg opacity:20% blur:7px](img/dalle_lady.png)
 
 
 <center>
@@ -172,8 +176,6 @@ Reuters: Amazon scraps secret AI recruiting tool that showed bias against women
 
 ## COMPAS
 
-![bg opacity:20% blur:7px](img/dalle_lady.png)
-
 
 <center>
 
@@ -182,8 +184,6 @@ Reuters: Amazon scraps secret AI recruiting tool that showed bias against women
 </center>
 
 ---
-
-![bg opacity:20% blur:7px](img/dalle_lady.png)
 
 
 ## How does this happen
@@ -197,8 +197,6 @@ As a perfect model is usually not available, the study of **fairness** in machin
 ---
 
 ## Classification - A Primer
-
-![bg opacity:20% blur:7px](img/dalle_lady.png)
 
 
 $X$: **data**, covariates
@@ -217,8 +215,6 @@ $$\hat{Y} = f_{\theta}(X)$$
 
 ## Classification - A Primer
 
-![bg opacity:20% blur:7px](img/dalle_lady.png)
-
 
 
 <center>
@@ -233,8 +229,6 @@ $Y$: the person received a positive evaluation from their manager after 12 month
 
 
 ---
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
 
 ## The ML loop
 
@@ -255,8 +249,6 @@ $Y$: the person received a positive evaluation from their manager after 12 month
 
 ---
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
 ## Measurement
 
 <br>
@@ -270,8 +262,6 @@ Snipes, Thomson and Oswald. *Gender bias in customer evaluations of service qual
 
 
 ---
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
 
 
 ## Discrimination?
@@ -301,8 +291,6 @@ Sources for this lecture:
 
 ---
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
 
 ## Discrimination?
 
@@ -316,12 +304,10 @@ A few relevant questions:
 
 ---
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
 
 ## What is discrimination?
 
-Direct discrimination is the practice of **treating differently** people on the basis of membership of a salient social group.
+Direct discrimination is the practice of **treating differently** people on the basis of membership to a salient social group.
 
 Examples:
 
@@ -334,8 +320,6 @@ In the US and in the ML fairness literature, this concept is usually referred to
 
 
 ---
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
 
 
 ## Indirect discrimination
@@ -351,8 +335,6 @@ Examples (EU Handbook on Anti-Discrimination Law):
 
 ---
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
 
 ## Indirect discrimination
 
@@ -363,20 +345,16 @@ Examples:
 
 ---
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
 ## Indirect discrimination?
 
 At some level, we could disagree that the cases above constitute discrimination - and some certainly will disagree.
 
-One possible argument: nobody **intended** any harm on certain groups, and the tests/pension rates were not computed with these issues in mind. 
+One possible argument: nobody **intended** any harm on certain groups, and the tests/pension rates were not created/computed with these issues in mind. 
 
 Thus, no discrimination actually happened.
 
 
 ---
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
 
 
 ## What makes discrimination wrong?
@@ -391,8 +369,6 @@ Thus, one possible ground which we may analyze is **intent**.
 
 ---
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
 
 ## Intent and Discrimination
 
@@ -406,8 +382,6 @@ We also notice one central issue: the mental states account **does not cover ind
 
 ---
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
 
 ## Individuals and Discrimination
 
@@ -418,8 +392,6 @@ In other words: **failing to treat people as individuals**.
 Assume that an employer reads that smokers are on average less productive than non-smokers. Then, job applicants who smoke are rejected without fail.
 
 ---
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
 
 
 ## Individuals and Discrimination
@@ -433,31 +405,15 @@ Here, we run into several problems:
 
 ---
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
 ## Egalitarianism
 
 Another proposal is to look at our issues with the algorithms presented so far under the lens of egalitarianism.
 
 Broadly: egalitarianism is the idea that people should be treated equally and that - sometimes - certain valuable things should be equally distributed. 
 
-Therefore, we may say that the systems we have observed so far **do not follow egalitarianism**, broadly. 
-
-
+Therefore, we may say that the systems we have observed so far **are not egalitarian**. 
 
 ---
-
-## Egalitarianism
-
-Rawls' thought experiment, the veil of ignorance
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
 
 ## Equality of what?
 
@@ -470,8 +426,6 @@ Algorithms which fail to equally distribute these may be inflicting **harms** to
 
 ---
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
 
 ## Harms
 
@@ -482,8 +436,6 @@ A discriminatory (non-egalitarian) algorithm may inflict two different kind of h
 
 
 ---
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
 
 ## Luck and desert
 
@@ -497,19 +449,7 @@ Of course, tracing a line between which features in a feature vector are due to 
 
 
 
-
 ---
-
-## Equality of opportunity
-
-
-TODO: chapter 4 of mlbook, broad and narrow view
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
 
 
 ## Egalitarianism and Indirect Discrimination
@@ -521,8 +461,6 @@ Nonetheless, one could argue that egalitarianism provides a reasonable grounding
 
 
 ---
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
 
 
 ## Discrimination?
@@ -538,31 +476,39 @@ Please discuss!
 
 ---
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
+
+## Fairness by unawareness
+
+One thing we need to be aware about is that **data-driven algorithms are able to recover sensitive information**. 
+
+As an example, your zipcode gives away some information about your ancestry/ethnicity as the population statistics are usually publicly available. 
+
+
+
+---
 
 
 ## Fairness by unawareness
 
+<center>
 
-go back to devil's advocate and say: the issue is that we are talking about this at all. if we were colorblind, nothing like this would happen. let's just remove names, gender, etc. from CVs and we will be done. 
+![w:800px](img/unawareness.png)
 
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Compounding discrimination
-
-argue that algorithms may automatically compound discrimination
-
+**Left**: one particular feature has the same distribution but a mean difference of 0.5 across groups. **Right**: how well we can predict whether an individual belong to one group or the other as the number of these features grows.
+</center>
 
 
 ---
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
+## Fairness by unawareness
+
+
+<br>
+
+
+**Unawareness** is usually not a thing in real-world data, and is hard to claim if you look at the correlations.
+
+---
 
 
 ## Statistical non-discrimination criteria
@@ -579,8 +525,6 @@ We add: $A$ the sensitive attribute, a discrete feature representing the group a
 
 
 ---
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
 
 
 ## Statistical non-discrimination criteria
@@ -599,8 +543,6 @@ We may be interested in balancing the **acceptance rate** of our classifier, i.e
 
 ---
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
 
 ## Statistical non-discrimination criteria
 
@@ -611,8 +553,6 @@ Note that here we are assuming that one particular value of $Y$ - and therefore 
 
 ---
 
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
 
 
 ## Independence
@@ -634,8 +574,6 @@ If $A$ may take onto more values than $\{a, b\}$, then the condition must be sat
 
 ---
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
 
 ## Independence
 
@@ -653,8 +591,6 @@ Where in both cases $\epsilon \geq 0$.
 
 ---
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
 
 ## Independence
 
@@ -667,8 +603,6 @@ Where in both cases $\epsilon \geq 0$.
 
 ---
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
 
 ## Independence
 
@@ -680,8 +614,6 @@ This methodology perfectly satisfies independence. However, consider the ML loop
 
 
 ---
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
 
 
 ## Independence
@@ -701,23 +633,166 @@ Actions have consequences on the state of the world and therefore on the data --
 
 ---
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
+## Independence
 
+>Using a dataset of all CEO transitions in Fortune 500 companies over a 15-year period, we analyze mechanisms that shape the promotion probabilities and leadership tenure of women and racial/ethnic minority CEOs. Consistent with the theory of the glass cliff, we find that **occupational minorities**—defined as white women and men and women of color—**are more likely than white men to be promoted CEO of weakly performing firms**. Though we find no significant differences in tenure length between occupational minorities and white men, we find that when firm performance declines during the tenure of occupational minority CEOs, these leaders are likely to be replaced by white men. We term this phenomenon the “savior effect.”
+
+Cook and Glass. "*Above the glass ceiling: When are women and racial/ethnic minorities promoted to CEO?*". Strategic Management Journal 35, 2014.
+
+
+---
 
 ## Separation
 
-separation can also codify merit in some sense
+As previously discussed, independence does not consider $Y$ at all.
+
+Nonetheless, if we believe that our ground truth $Y$ was collected carefully and does not contain much bias, it may represent a **partitioning of the population** into groups of **equal claim to acceptance**.
+
+Of course some demographic group $A = a$ may be less well-represented in the label group $Y = 1$. One could argue that in these cases it is justified to accept fewer individuals from group $a$.  
 
 ---
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
+## Separation
 
+Random variables $(\hat{Y}, A, Y)$ satisfy **separation** if $\hat{Y} \bot A \mid Y$.
+
+In the binary classification and binary $A$ case:
+
+$$
+\mathbb{P}(\hat{Y} = 1 \mid Y = 1, A = a) = \mathbb{P}(\hat{Y} = 1 \mid Y = 1, A = b) \\
+\mathbb{P}(\hat{Y} = 1 \mid Y = 0, A = a) = \mathbb{P}(\hat{Y} = 1 \mid Y = 0, A = b)
+$$
+
+**Intuitively**: once we pick a value for $Y$, the value of $A$ does not matter for the classifier.
+
+---
+
+## Separation
+
+$$
+\mathbb{P}(\hat{Y} = 1 \mid Y = 1, A = a) = \mathbb{P}(\hat{Y} = 1 \mid Y = 1, A = b) \\
+\mathbb{P}(\hat{Y} = 1 \mid Y = 0, A = a) = \mathbb{P}(\hat{Y} = 1 \mid Y = 0, A = b)
+$$
+
+<br>
+
+Notice that $\mathbb{P}(\hat{Y} = 1 \mid Y = 1)$ is the **true positive rate**.
+
+Remember that $1-$ true positive rate $=$ **false negative rate**.
+
+Notice that $\mathbb{P}(\hat{Y} = 1 \mid Y = 0)$ is the **false positive rate**. 
+
+Thus, separation requires that all groups experience **the same false negative rate** and **the same false positive rate**.
+
+Separation may be understood as **error rate parity** across groups.
+
+---
 
 ## Sufficiency
 
+Random variables $(\hat{Y}, A, Y)$ satisfy **sufficiency** if $Y \bot A \mid \hat{Y}$.
+
+In the binary classification and binary $A$ case:
+
+$$
+\mathbb{P}(Y = 1 \mid \hat{Y} = 1, A = a) = \mathbb{P}(Y = 1 \mid \hat{Y} = 1, A = b) \\
+\mathbb{P}(Y = 1 \mid \hat{Y} = 0, A = a) = \mathbb{P}(Y = 1 \mid \hat{Y} = 0, A = b)
+$$
+
+**Intuitively**: parity of predicted positive/negative values across groups. 
+
+
+---
+
+
+## Incompatibility Theorems
+
+These criteria constrain the joint distribution of $(Y, A, \hat{Y})$ in non-trivial ways. There are several **incompatibility theorems** that show us how these criteria cannot be satisfied simultaneously by any classifier $f$.
 
 
 
+
+
+---
+
+
+## Independence vs. Sufficiency
+
+Independence: $A \bot \hat{Y}$.
+
+Sufficiency: $Y \bot A \mid \hat{Y}$.
+
+**Theorem 1**. Assume $A$ and $Y$ are not independent. Then, sufficiency and independence cannot both hold. 
+
+**Proof** by contradiction. $A \bot \hat{Y}  \; \wedge \; A \bot Y \mid \hat{Y} \to A \bot (Y, A) \to A \bot Y$
+
+
+
+---
+
+
+## Independence vs. Separation.
+
+Independence: $A \bot \hat{Y}$.
+
+Separation: $\hat{Y} \bot A \mid Y$.
+
+**Theorem 2**. Assume that $Y$ is binary, $A$ is not independent of $Y$ and $\hat{Y}$ is not independent of Y. Then, independence and separation cannot both hold.
+
+
+
+
+---
+
+
+## Independence vs. Separation
+
+**Theorem 2**. Assume that $Y$ is binary, $A$ is not independent of $Y$ and $\hat{Y}$ is not independent of Y. Then, independence and separation cannot both hold.
+
+**Proof.** By the law of total probability, 
+$\mathbb{P}(\hat{Y} = \hat{y} \mid A = a) = \sum_y \mathbb{P}(\hat{Y} = \hat{y} \mid A = a, Y = y) \mathbb{P}(Y = y \mid A = a)$
+
+Since we assume that $A \bot \hat{Y}$ and that $A \bot \hat{Y} \mid Y$, we may simplify the above to 
+
+$\mathbb{P}(\hat{Y} = \hat{y}) = \sum_y \mathbb{P}(\hat{Y} = \hat{y} \mid Y = y) \mathbb{P}(Y = y \mid A = a)$
+
+
+
+
+---
+
+
+## Independence vs. Separation
+
+
+However, we can use total probability again to decompose $\mathbb{P}(\hat{Y} = \hat{y})$ as follows:
+
+$\mathbb{P}(\hat{Y} = \hat{y}) = \sum_y \mathbb{P}(\hat{Y} = \hat{y} \mid Y = y) \mathbb{P}(Y = y)$
+
+It follows that the last two derivations must equal one another:
+
+$\sum_y \mathbb{P}(\hat{Y} = \hat{y} \mid Y = y) \mathbb{P}(Y = y \mid A = a) = \sum_y \mathbb{P}(\hat{Y} = \hat{y} \mid Y = y) \mathbb{P}(Y = y)$
+
+Let us rewrite this equation in a more compact way.
+
+$p \coloneqq \mathbb{P}(Y = 0); \; p_a \coloneqq \mathbb{P}(Y = 0 \mid A = a); \; r_y = \mathbb{P}(\hat{Y} = \hat{y} \mid Y = y)$
+
+
+
+---
+
+
+## Independence vs. Separation
+
+Then,
+
+$p r_0 + (1-p) r_1 = p_a r_0 + (1 - p_a) r_1$
+
+which we may rewrite as
+
+$p(r_0 - r_1) = p_a(r_0 - r_1)$
+
+This equation is satisfied only if $r_0 = r_1$, which implies $\hat{Y} \bot Y$; or if $p = p_a$ for all $a$, which implies $Y \bot A$. 
 
 
 
@@ -726,716 +801,23 @@ separation can also codify merit in some sense
 
 ---
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
 
+## Separation vs. Sufficiency
 
-## Outline
+Sufficiency: $Y \bot A \mid \hat{Y}$.
 
+Separation: $\hat{Y} \bot A \mid Y$.
 
+**Theorem 3**. Assume that all events in the joint distribution of $A, \hat{Y}, Y$ have non-zero probability. Also assume that $A \not \perp Y$. Then, separation and sufficiency cannot hold.
 
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
+**Proof.** $A \bot \hat{Y} \mid Y \wedge A \bot Y \mid \hat{Y} \to A \bot (\hat{Y}, Y)$. Then, $A \bot \hat{Y} \wedge A \bot Y$.
 
 ---
 
-![bg opacity:20% blur:8px](img/dalle_lady.png)
 
 
-## Outline
 
 
 
 
 
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----
-
-![bg opacity:20% blur:8px](img/dalle_lady.png)
-
-
-## Outline
-
-
-
-
-
-
-
-
----

@@ -28,6 +28,58 @@ paginate: true
 
 ---
 
+## What is discrimination?
+
+Direct discrimination is the practice of **treating differently** people on the basis of membership to a salient social group.
+
+Examples:
+
+* Preferring to hire a male applicant over an equally-qualified female applicant
+* Imposing stricter conditions for parole on applicants belonging to a minority group
+
+In the EU, this is covered by Article 21 of the Charter of Fundamental Rights.
+
+In the US and in the ML fairness literature, this concept is usually referred to as disparate treatment. 
+
+
+---
+
+## Indirect discrimination
+
+Indirect discrimination is the practice of offering **the same treatment** to people in **different salient social groups** if this leads to one group of people **being put at a particular disadvantage**. 
+
+In the US and in the ML fairness literature, this concept is usually called disparate impact.
+
+---
+
+## What makes discrimination wrong?
+
+* **Mental states**: systematic animosity towards certain groups
+<br>
+* **Not treating people as individuals**: generalizing from stereotypes/statistics 
+<br>
+* **Non-egalitarianism**: the belief that people should have the same access to resources is not held
+
+---
+
+## Harms
+
+A discriminatory (non-egalitarian) algorithm may inflict two different kind of harms:
+
+* **Allocative**. Certain groups are denied resources in a disparate way. Examples: COMPAS, Amazon hiring system.
+* **Representational**. The AI system reinforces the subordination of some groups. Example: beauty.ai, automatic translation
+
+<center>
+
+![](img/google-translate.png)
+
+</center>
+
+
+---
+
+
+
 ## Independence
 
 
@@ -182,9 +234,6 @@ $$
 These criteria constrain the joint distribution of $(Y, A, \hat{Y})$ in non-trivial ways. There are several **incompatibility theorems** that show us how these criteria cannot be satisfied simultaneously by any classifier $f$.
 
 
-
-
-
 ---
 
 
@@ -209,7 +258,7 @@ Independence: $A \bot \hat{Y}$.
 
 Separation: $\hat{Y} \bot A \mid Y$.
 
-**Theorem 2**. Assume that $Y$ is binary, $A$ is not independent of $Y$ and $\hat{Y}$ is not independent of Y. Then, independence and separation cannot both hold.
+**Theorem 2**. Assume that $Y$ is binary, $A$ is not independent of $Y$ and $\hat{Y}$ is not independent of $Y$. Then, independence and separation cannot both hold.
 
 
 
@@ -219,15 +268,26 @@ Separation: $\hat{Y} \bot A \mid Y$.
 
 ## Independence vs. Separation
 
-**Theorem 2**. Assume that $Y$ is binary, $A$ is not independent of $Y$ and $\hat{Y}$ is not independent of Y. Then, independence and separation cannot both hold.
+**Theorem 2**. Assume that $Y$ is binary, $A$ is not independent of $Y$ and $\hat{Y}$ is not independent of $Y$. Then, independence and separation cannot both hold.
 
-**Proof.** By the law of total probability, 
+**Proof.** By **contraposition**. Instead of proving $p \to q$, we prove $\neg q \to \neg p$. Therefore, we need to prove that 
+
+$$A \bot Y \wedge A \bot \hat{Y} \mid Y \to A \bot Y \lor \hat{Y} \bot Y.$$
+
+---
+
+## Independence vs. Separation
+
+By the law of total probability, 
 $\mathbb{P}(\hat{Y} = \hat{y} \mid A = a) = \sum_y \mathbb{P}(\hat{Y} = \hat{y} \mid A = a, Y = y) \mathbb{P}(Y = y \mid A = a)$
 
 Since we assume that $A \bot \hat{Y}$ and that $A \bot \hat{Y} \mid Y$, we may simplify the above to 
 
 $\mathbb{P}(\hat{Y} = \hat{y}) = \sum_y \mathbb{P}(\hat{Y} = \hat{y} \mid Y = y) \mathbb{P}(Y = y \mid A = a)$
 
+However, we can use total probability again to decompose $\mathbb{P}(\hat{Y} = \hat{y})$ as follows:
+
+$\mathbb{P}(\hat{Y} = \hat{y}) = \sum_y \mathbb{P}(\hat{Y} = \hat{y} \mid Y = y) \mathbb{P}(Y = y)$
 
 
 
@@ -236,10 +296,7 @@ $\mathbb{P}(\hat{Y} = \hat{y}) = \sum_y \mathbb{P}(\hat{Y} = \hat{y} \mid Y = y)
 
 ## Independence vs. Separation
 
-
-However, we can use total probability again to decompose $\mathbb{P}(\hat{Y} = \hat{y})$ as follows:
-
-$\mathbb{P}(\hat{Y} = \hat{y}) = \sum_y \mathbb{P}(\hat{Y} = \hat{y} \mid Y = y) \mathbb{P}(Y = y)$
+<br>
 
 It follows that the last two derivations must equal one another:
 
@@ -249,7 +306,9 @@ Let us rewrite this equation in a more compact way.
 
 $p \coloneqq \mathbb{P}(Y = 0); \; p_a \coloneqq \mathbb{P}(Y = 0 \mid A = a); \; r_y = \mathbb{P}(\hat{Y} = \hat{y} \mid Y = y)$
 
+Then,
 
+$p r_0 + (1-p) r_1 = p_a r_0 + (1 - p_a) r_1$
 
 ---
 
@@ -264,11 +323,7 @@ which we may rewrite as
 
 $p(r_0 - r_1) = p_a(r_0 - r_1)$
 
-This equation is satisfied only if $r_0 = r_1$, which implies $\hat{Y} \bot Y$; or if $p = p_a$ for all $a$, which implies $Y \bot A$. 
-
-
-
-
+This equation is satisfied only if $r_0 = r_1$, which implies $\hat{Y} \bot Y$; or if $p = p_a$ for all $a$, which implies $Y \bot A$.
 
 
 ---
@@ -472,7 +527,129 @@ In the continuous case, one can just substitute the sums with integrals.
 * Different rankers $r_{\theta}$ will return different top-1 probabilities. This will in turn modify the **final result**.
 <br>
 * To be considered in the event that one is concerned about having a biased ground truth measurement process.
+<br>
 
 ---
 
-## Weighting
+## Reweighting
+
+Recall the definition of an optimal classifier: 
+
+$$ argmin_{\theta} \; \mathbb{E}(\ell(Y, f_{\theta}(X))) $$
+
+<br>
+
+**Reweighting** creates a vector of weights $\mathbb{w} \in \mathbb{R}^+$ which length is equal to the number of elements in the training set. The optimal classifier is then re-defined as follows:
+
+$$ argmin_{\theta} \; \mathbb{E}(\ell(Y, \mathbb{w} \, \cdot f_{\theta}(X))) $$
+
+$$ = argmin_{\theta} \; \frac{1}{N} \sum_{i=1}^{N} \ell(y_i, \mathbb{w_i} \, \cdot f_{\theta}(x_i))) $$
+
+<br>
+
+Where $x_i$ is the $i$-th example in the training set and $N$ is the number of examples therein.
+
+---
+
+## Reweighting // Resampling
+
+<br>
+
+
+Note that not all learning algorithms are able to work with weighted examples. 
+
+<br>
+
+In that case, one can **resample** the dataset according to the distribution of $\mathbb{w}$. Roughly speaking, each example $x_i$ has a probability of $w_i$ to be included in the resampled dataset. 
+
+
+---
+
+## Reweighting
+
+Each weight $w_i$ is assigned to one $x_i$ and is computed as a function of the label value and sensitive attribute value:
+
+$$ \mathbb{w}(A, Y) = \frac{\mathbb{P}_{ind}(A = a_i \; \wedge Y = y_i)}{\mathbb{P}_{obs}(A = a_i \; \wedge Y = y_i)} $$
+
+where $\mathbb{P}_{ind}$ is the probability in the **world where independence holds** and therefore  $A \bot Y$.
+
+$$\mathbb{P}_{ind}(A = a_i \wedge Y = y_i) = \mathbb{P}(A = a_i) \cdot \mathbb{P}(Y = y_i)$$
+
+and where $\mathbb{P}_{obs}$ is obtained from the dataset by counting.
+
+---
+
+## Reweighting
+
+Let's work through an example. 
+
+| Sex 	| Ethnicity  	| Degree      	| Job Type   	| $Y$ 	|
+|-----	|------------	|-------------	|------------	|-------	|
+| M   	| Native     	| High School 	| Board      	| 1     	|
+| M   	| Native     	| University  	| Board      	| 1     	|
+| M   	| Native     	| High School 	| Board      	| 1     	|
+| M   	| Non-Native 	| High School 	| Healthcare 	| 1     	|
+| M   	| Non-Native 	| University  	| Healthcare 	| 0     	|
+| F   	| Non-Native 	| University  	| Education  	| 0     	|
+| F   	| Native     	| High School 	| Education   	| 0     	|
+| F   	| Native     	| None        	| Healthcare 	| 1     	|
+| F   	| Non-native 	| University  	| Education  	| 0     	|
+| F   	| Native     	| High School 	| Board      	| 1     	|
+
+---
+
+## Reweighting
+
+We first note that $1/2$ of the examples have $A = ``F"$ and that $6/10$ examples have $Y = 1$.
+
+If independence was held, we would have that $\mathbb{P}(A = ``F'' \wedge Y = 1) = 1/2 * 6/10 = 3/10$. **This is $\mathbb{P}_{ind}$**.
+
+Instead, we see that in the dataset this probability is $2/10$. **This is $\mathbb{P}_{obs}$**.
+
+Thus, we compute $\mathbb{w}$ for all examples in which $A = ``F''$ and $Y = 1$ as follows:
+
+$$w(A = ``F'' \wedge Y = 1) = \frac{0.5 \cdot 0.6}{0.2} = 1.5$$
+
+---
+
+## Reweighting
+
+* Rather flexible - if the classifier cannot use $w$, just resample.
+<br>
+* Doesn't particularly take the idea of **merit** into account at all. Some extensions do that via ranking probabilities, similarly to massaging. These are also discussed in Kamiran and Calders, 2012. 
+<br>
+* Easy to design extensions in which we also care about other probabilities, e.g. a minimum level of degree, and compute the weights also according to that. 
+<br>
+* Notice that all the methodologies presented today do not require $A$ at inference time. This lets the learned classifier $f_{\theta}(x)$ be "independent" of $A$. Nonetheless, the intervention was "encoded" in $w$ (reweighting), $Y$ (massaging) or $X$ (suppression)
+
+---
+
+## Next Lecture
+
+* In-processing: deriving a loss function for fairness
+<br>
+* Representation-level pre-processing: learning fair representations
+
+
+---
+
+<!-- _class: lead -->
+
+<center>
+
+![bg left](img/dalle_lady.png)
+
+# Trustworthy AI: <br> Fairness, Interpretability <br> and Privacy 
+
+## Thanks!
+
+
+
+<div class="footnote">
+
+ Image generated by OpenAI dall-e
+ *Prompt:* "a trustworthy robot helping an old lady cross a busy street, realistic"
+
+</div> 
+
+</center>

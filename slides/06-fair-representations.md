@@ -28,13 +28,39 @@ paginate: true
 
 ---
 
-## Outline
+## Fairness Interventions
 
-* Neural networks
-* Representation Learning
-* Object recognition
-* Interpretability: linear classifier vs. NN (metti immagini su piano cartesiano)
-* LFR
+If one is concerned about unbalanced/non-egalitarian decision making, one possible action is to employ **fairness interventions**
+
+<br>
+
+This is a catch-all term for various techniques which impact the level of independence, separation or sufficiency of a classifier - sometimes more than one at once.
+
+<br>
+
+As discussed previously, this is a **last resort approach** and no substitute to understand the data generation process.
+
+---
+
+## Interventions Taxonomy
+
+![](img/interventions-2.png)
+
+---
+
+## In-Processing
+
+**Regularization** approaches model fairness in the **objective function** of a classifier.
+
+<br>
+
+For this reason, they can often be more accurate than preprocessing methods.
+
+<br>
+
+As mentioned previously, however, they are only as interpretable as the model one is employing. 
+
+
 
 ---
 
@@ -60,12 +86,6 @@ Neural networks are now the de facto choice for many challenging ML tasks, parti
 ![w:900px](img/sketch.png)
 
 </center>
-
----
-
-<video controls="controls" width="700" src="img/nn.webm">
-
-
 
 ---
 
@@ -330,7 +350,8 @@ Our layer parameters are, in practice, convolution matrices.
 
 ## Neural Networks
 
-(insert cs231n animation)
+
+<video controls="controls" width="90%" source="img/net.mp4">
 
 
 ---

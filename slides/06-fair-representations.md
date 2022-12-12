@@ -250,7 +250,7 @@ A complete description of backpropagation is beyond the scope of our class.
 
 <br>
 
-**Core concept**: if your network makes a classification error $e$, assign some **responsability** to each parameter **w**. Then, update the **more** responsible neurons **more strongly**. 
+**Core concept**: if your network makes a classification error $e$, assign some **responsability** to each parameter **w**. Then, update the **more** responsible parameters **more strongly**. 
 
 <br>
 

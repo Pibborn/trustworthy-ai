@@ -30,14 +30,6 @@ paginate: true
 
 </center>
 
-
----
-
-## Todos
-
-1. more previous work
-
-
 ---
 
 ## Neural Networks: Multi-layer perceptron
@@ -83,6 +75,7 @@ Each layers' parameters are organized into matrices which are then convolved wit
 * Why?
 * What is lacking from our understanding?
 * Are there clear desiderata they do not have?
+* Are there "white box" models?
 
 
 ---
@@ -113,7 +106,7 @@ where $\sigma_i$ are random variables $\in \{ -1, 1 \}$.
 
 $$ \mathcal{\hat{R}}(\mathcal{F}) = \mathbb{E}_{\sigma} ( sup_{f \in F} \; \frac{1}{n} \sum_{i=1}^n \mathbb{I}[f(x_i) = \sigma_i y_i]) $$
 
-In practice: take some number of $f$ in $\mathcal{F}$; the Rademacher complexity of $\mathcal{F}$ may be computed as the best performance of one $f$ on a **randomly labeled test set**.
+In practice: take some number of $f$ in $\mathcal{F}$; the Rademacher complexity of $\mathcal{F}$ may be computed as the best performance of one $f$ on **randomly labeled data**.
 
 One can then upper bound the expected generalization error of one $f \in \mathcal{F}$ with $\mathcal{\hat{R}}$, up to a constant.
 
@@ -184,7 +177,42 @@ Examples: rule sets, decision trees, ~linear models.
 
 <br>
 
-Note that highly engineered features (e.g. kernel tricks) may also negatively impact decomposability.
+Note that highly engineered features (e.g. kernel tricks) may also negatively impact decomposability, even if paired with a decomposable model. 
+
+---
+
+## Rule sets 
+
+Example ruleset for COMPAS:
+
+<br>
+
+```
+if ({Prior-Crimes>3}) then ({label=1})
+else if ({Age=18-22}) then ({label=1})
+else ({label=0})
+```
+
+<br>
+
+Around 66% accuracy. Extracted with CORELS https://corels.eecs.harvard.edu/corels/run.html
+
+
+---
+
+## Decision Trees
+
+Example decision tree for COMPAS:
+
+<br>
+´
+<center>
+
+![](img/compastree.png)
+
+</center>
+
+From ``Optimal Sparse Decision Trees'', Hu et al., 2019
 
 ---
 
@@ -193,4 +221,229 @@ Note that highly engineered features (e.g. kernel tricks) may also negatively im
 **Simulatability** is the property of being able to contemplate the entire model at once.
 
 <br>
+
+To fully understand a model, one could posit that it must be possible to reproduce all relevant computational steps in a reasonable amount of time.
+
+
+
+* Decision trees: possible, as long as the depth/number of terminals is not big
+* Rulesets: same as above, but with the number of extracted rules
+* Linear models: depends on the number of features - if we have 1000 columns in our dataset, it is still quite hard to contemplate the whole model. 
+
+
+---
+
+## Transparency?
+
+<br>
+
+If **transparency** is the ultimate goal, or the "state of being not a black box" is the ultimate goal, are the properties we mentioned so far all that is needed?
+
+* Statistical guarantees of error rates 
+* Decomposability
+* Simulatability
+
+An alternative: **generating explanations** for **1**. An entire model, or for **2.** Some specific decision undertaken by the model. 
+
+---
+
+## Explaining decisions
+
+<br>
+
+Given a opaque classifier $f$, **local explanation methods** produce an **explanation model** $g \in G$ which **locally approximates** $f$ in the neighborhood of $x$.
+
+<br>
+
+$G$ is taken to be some inherently "transparent" model family, such as a linear classifier or a decision tree. 
+
+
+---
+
+## Explaining decisions
+
+<br>
+
+Producing an explanation for the decision $\hat{y} = f(x)$ may then be formalized as follows:
+
+<br>
+
+$$\xi(x) = argmin_{g \in G} \, \, \mathcal{L}(f, g, \pi_x) + \Omega(g) $$
+
+<br>
+
+* $\pi_x$: a distance function between $x$ and other points $z$ of the same dimensionality. Used to compute similarity and find a set of neighboring instances.
+* $\Omega$: a complexity function. We won't define this formally, but in linear models it may be e.g. the number of non-zero parameters, or the depth of a decision tree.
+
+
+---
+
+## Explaining decisions
+
+<br>
+
+Producing an explanation for the decision $\hat{y} = f(x)$ may then be formalized as follows:
+
+<br>
+
+$$\xi(x) = argmin_{g \in G} \, \, \mathcal{L}(f, g, \pi_x) + \Omega(g) $$
+
+<br>
+
+* $\mathcal{L}(f, g, \pi_x)$: a measure of how unfaithful $g$ is in approximating $f$ in the locality defined via $\pi_x$. Example: 1-accuracy.  
+
+---
+
+## Explaining decisions
+
+In pseudocode:
+
+1. Select the instance of interest $x$ and obtain the prediction $y = f(x)$.
+2. Pick a distance function $\pi_x$ and obtain a number of points $x'_i$ for which $\pi_x < d$ via perturbations of $x$.
+3. Obtain predictions $y'_i = f(x_i)$. 
+4. Train a transparent model $g$ on the dataset $\{x'_i, y'_i\}$. Optionally, use the distances $d_i$ as weights when learning the classifier. 
+5. Obtain $\xi$ by interpreting $g$.  
+
+
+
+---
+
+## Expaining decisions
+
+
+<center>
+
+![w:550px](img/lime-example.png)
+
+</center>
+
+* $---$: $g$
+* **+**: the instance of interest, positively classified.
+
+---
+
+## Explaining decisions
+
+<center>
+
+![w:550px](img/lime2.png)
+
+</center>
+
+---
+
+## Explaining decisions
+
+Limitations:
+
+* Choosing an appropriate $\pi_x$. How to do that on e.g. images? What is the right threshold $d$?
+* **Fidelity**. Does $g$ obtain perfect accuracy on $\{x'_i, y'_i\}$? If not, $g$ is not a perfect local approximation of $f$.
+
+---
+
+## Counterfactual explanations
+
+Idea: instead of **approximating** the decisions of an opaque model, give out a possible scenario in which **another decision** would have been made.
+
+<br>
+
+In general, this is an example of **counterfactual reasoning**. "If X had not occurred, then Y had not occurred". This can be easily connected to feature values: "If your salary was higer, you would have gotten the loan". 
+
+<br>
+
+Also possible to apply this to **significant thresholds** in probability - as an example, we may care when the probability of cancer crosses 20%. 
+
+
+---
+
+## Counterfactual explanations
+
+The task of producing a counterfactual explanation is to generate an instance $x'$ for which $y' = f(x') \neq y = f(x)$ for some outcome $y'$ one cares about. Furthermore:
+
+* The counterfactual instance $x'$ should be as similar as possible to $x$ - both in distance and in the number of features changed.
+* The instance should have feature values which are likely in the dataset - or at least plausible according to the data generating process.
+
+
+
+---
+
+## Counterfactual explanations
+
+One possible formalization:
+
+<br>
+
+$$x_{cf} = argmin_{x'} \, \mathcal{L}(x, x', y', \lambda) = argmin_{x'} \lambda \cdot (f(x') - y')^2 + d(x, x')$$ 
+
+<br>
+
+* $(f(x') - y')^2$: squared distance between the prediction of $f$ on $x'$ and the desired outcome $x'$. The higher, the less interested we are in $x'$. 
+* $d(x, x')$: distance between $x'$ and $x$, which may be chosen according to different criteria. Most features are similar: L1 distance. As similar as possible: L2 distance. The higher this is, the less we are interested in $x'$. 
+* $\lambda$: a tradeoff parameter between the two desiderata. 
+
+---
+
+## Counterfactual explanations
+
+<br>
+
+Limitations:
+
+
+* Defining a "neighborhood" is again quite challenging for non-tabular data.
+<br>
+* The interpretation of the explanation must be careful - the lack of a certain feature value (e.g. a higher salary) is not the **cause** for the decision undertaken by the model. As multiple, similarly-valued counterfactuals $x'$ may exist, one should avoid **causal language** when discussing these explanations. 
+
+
+---
+
+## Limitations in Explanations
+
+In general, there are certain limits to explaining decisions with the methodologies we currently developed.
+
+* The ability to explain any decision may induce **trust** in an opaque model which we still **do not fully understand**. 
+* Any explanation model may have limited **fidelity**. 
+* 
+
+
+---
+
+## Next Lecture
+
+* Interpreting and explaining Computer Vision models
+<br>
+* New research in transparent models for classification (generalized additive models, neural additive models)
+
+
+---
+
+<!-- _class: lead -->
+
+<center>
+
+![bg left](img/dalle_jesus.png)
+
+# Trustworthy AI
+
+<br>
+
+## Thanks!
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<div class="footnote">
+
+ Image generated by OpenAI dall-e
+ *Prompt:* "a robot looks within itself and sees a scary mass of data and mathematical formulas. comic style"
+
+</div> 
+
+</center>
 

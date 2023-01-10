@@ -35,7 +35,7 @@ paginate: true
 ## Before we start
 
 * We have **4** lectures left, including today. Last lecture will be on January the 31st.
-* Next lecture: **regulating AI** by **Alesia Vallenas**, StEx. 
+* Next lecture: **regulating AI** by **Alesia Vallenas**, LL.M. 
 
 <br>
 
@@ -46,6 +46,17 @@ paginate: true
 * We will have a tutorial on Thursday, during which you will receive your last assignment. I suggest everyone participates if possible. 
 
 
+
+---
+
+## Exam dates
+
+Tentative dates:
+
+* February 21st from 10AM onwards
+* March 14th from 10AM onwards
+
+You are welcome to choose one depending on your schedule. People who come to the first one get to pick which topic to start from as an incentive. 
 
 ---
 
